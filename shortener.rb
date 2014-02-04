@@ -34,8 +34,8 @@ end
 # Routes
 ###########################################################
 
-get '/' do
-    @links = [] # FIXME
+get '/' do  
+    @links =  Link.find(:all)
     erb :index
 end
 
@@ -43,8 +43,22 @@ get '/new' do
     erb :form
 end
 
+get '/:id' do
+  redirect to 'http://'.concat( Link.find_by_short(params[:id]).url ), 302
+end
+
 post '/new' do
-    # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
+  link = Link.new
+  link.url = params[:url]
+  l = Link.find_by_url( link.url )
+  if l == nil
+    link.short = Random.new.rand(100)
+    link.save
+    body link.short.to_s
+  else
+    body l.short.to_s
+  end
+  status 200  
 end
 
 # MORE ROUTES GO HERE

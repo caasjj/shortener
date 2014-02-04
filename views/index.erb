@@ -3,9 +3,8 @@
 <ul class="links">
 <% @links.each do |link| %>
   <li>
-    <a href="/<%= link.code %>"><%= link.code %></a>
+    <a href="/<%= link.short %>"><%= link.short %> - <%= link.url %></a>
   </li>
 <% end %>
 </ul>
-
 <a href="<%= url('/new') %>">Create new &rarr;</a>
