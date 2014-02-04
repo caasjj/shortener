@@ -1,1 +1,4 @@
 *.sqlite3.db
+.gitignore
+shortener.sublime-project
+shortener.sublime-workspace
